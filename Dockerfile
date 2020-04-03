@@ -29,6 +29,7 @@ RUN set -ex \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 VOLUME /var/lib/pgadmin
+VOLUME /usr/local/lib/python3.6/site-packages/pgadmin4/config.py
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
