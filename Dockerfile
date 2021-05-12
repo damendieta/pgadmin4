@@ -7,15 +7,15 @@ RUN set -ex \
 		postgresql-client \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV PGADMIN4_VERSION 4.29
-ENV PGADMIN4_DOWNLOAD_URL https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v${PGADMIN4_VERSION}/pip/pgadmin4-${PGADMIN4_VERSION}-py2.py3-none-any.whl
+ENV PGADMIN4_VERSION 5.2
+ENV PGADMIN4_DOWNLOAD_URL https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v${PGADMIN4_VERSION}/pip/pgadmin4-${PGADMIN4_VERSION}-py3-none-any.whl
 
 # Metadata
 LABEL org.label-schema.name="pgAdmin4" \
       org.label-schema.version="$PGADMIN4_VERSION" \
       org.label-schema.license="PostgreSQL" \
       org.label-schema.url="https://www.pgadmin.org" \
-      org.label-schema.vcs-url="https://github.com/elesdoar/dockercloud-pgAdmin4"
+      org.label-schema.vcs-url="https://github.com/damendieta/pgAdmin4"
 
 RUN set -ex \
 	&& buildDeps=" \
@@ -29,7 +29,7 @@ RUN set -ex \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 VOLUME /var/lib/pgadmin
-VOLUME /usr/local/lib/python3.6/site-packages/pgadmin4/config.py
+VOLUME /usr/local/lib/python3.6/site-packages/pgadmin4/
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
